@@ -984,4 +984,128 @@ button:disabled {
     }
 
     if (wakeEnabled) {
-      wakeE
+      
+      stopListening();
+      wakeEnabled = false;
+      $("wakeBtn").textContent = "Wake: OFF";
+      $("micState").textContent = "Ready";
+      setState("Ready");
+      setStatus("Wake Word band kar diya gaya hai.");
+    } else {
+      wakeEnabled = true;
+      $("wakeBtn").textContent = "Wake: ON";
+      setStatus("ZARA wake word sun rahi hai. 'Zara' boliye.");
+      startWakeListening();
+    }
+  }
+
+  function openSettings() {
+    $("apiKey").value = getStore("zara_gemini_key");
+    $("settingsOverlay").classList.add("show");
+  }
+
+  function closeSettings() {
+    $("settingsOverlay").classList.remove("show");
+  }
+
+  function openMemory() {
+    $("memoryInput").value = "";
+    $("memoryOverlay").classList.add("show");
+  }
+
+  function closeMemory() {
+    $("memoryOverlay").classList.remove("show");
+  }
+
+  $("settingsBtn").addEventListener("click", openSettings);
+  $("closeSettings").addEventListener("click", closeSettings);
+
+  $("saveSettings").addEventListener("click", () => {
+    const key = $("apiKey").value.trim();
+    const language = $("language").value;
+
+    if (key) setStore("zara_gemini_key", key);
+    setStore("zara_language", language);
+
+    closeSettings();
+    setStatus("Settings save ho gayi hain.");
+  });
+
+  $("language").value = getStore("zara_language", "hi-IN");
+
+  $("sendBtn").addEventListener("click", () => {
+    ask($("message").value);
+  });
+
+  $("message").addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      ask($("message").value);
+    }
+  });
+
+  $("micBtn").addEventListener("click", startVoiceInput);
+  $("wakeBtn").addEventListener("click", toggleWake);
+
+  $("addMemory").addEventListener("click", openMemory);
+  $("closeMemory").addEventListener("click", closeMemory);
+
+  $("saveMemory").addEventListener("click", () => {
+    const note = $("memoryInput").value.trim();
+
+    if (!note) {
+      setStatus("Pehle memory note likhiye.");
+      return;
+    }
+
+    saveMemory(note);
+    closeMemory();
+    setStatus("Memory note save ho gaya.");
+  });
+
+  document.querySelectorAll("[data-action]").forEach(button => {
+    button.addEventListener("click", () => {
+      const action = button.dataset.action;
+
+      if (action === "youtube") {
+        window.open("https://www.youtube.com/", "_blank");
+      } else if (action === "google") {
+        window.open("https://www.google.com/", "_blank");
+      } else if (action === "weather") {
+        window.open("https://www.google.com/search?q=weather", "_blank");
+      } else if (action === "memory") {
+        openMemory();
+      } else if (action === "voice") {
+        voiceEnabled = !voiceEnabled;
+        setStatus("Voice " + (voiceEnabled ? "ON" : "OFF"));
+        if (!voiceEnabled && "speechSynthesis" in window) {
+          speechSynthesis.cancel();
+        }
+      } else if (action === "settings") {
+        openSettings();
+      }
+    });
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopListening();
+    } else if (wakeEnabled) {
+      startWakeListening();
+    }
+  });
+
+  window.addEventListener("online", () => {
+    $("netState").textContent = "Online";
+  });
+
+  window.addEventListener("offline", () => {
+    $("netState").textContent = "Offline";
+  });
+
+  $("netState").textContent = navigator.onLine ? "Online" : "Offline";
+
+  updateMemory();
+  setState("Ready");
+})();
+  
