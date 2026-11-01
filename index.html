@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="hi"><head><meta charset="utf-8"><title>ZARA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#030820"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{color-scheme:dark;--c:#38a8ff;--g:#38a8ff66}*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden;background:#030820;color:#dff3ff;font-family:system-ui,sans-serif}
+#app{height:100dvh;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);background:radial-gradient(circle at 50% 22%,#0b2a7a,#030820 70%)}
+header{display:flex;justify-content:space-between;align-items:center;padding:6px 10px;gap:6px;border-bottom:1px solid #1d4f9a}
+header .l,header .r{display:flex;align-items:center;gap:8px}header b{display:block;letter-spacing:.14em;text-shadow:0 0 12px var(--c)}header small{display:block;font-size:9px;opacity:.8;letter-spacing:.1em}
+.lg{width:34px;height:34px;border-radius:50%;border:2px solid var(--c);display:grid;place-items:center;box-shadow:0 0 12px var(--g);font-size:16px}#tt{font-size:19px}
+.r{text-align:right}#tm{font-size:17px}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#2fe46b;margin-right:4px;box-shadow:0 0 8px #2fe46b}
+.ib{background:none;border:0;color:#dff3ff;font-size:24px;padding:4px}
+#ss{font-size:9px;border:1px solid var(--c);border-radius:8px;padding:3px 7px;color:#6dffb0;letter-spacing:.08em}
+#scroll{flex:1;min-height:0;overflow-y:auto;padding:0 10px 12px;-webkit-overflow-scrolling:touch}
+#stage{height:min(58vh,520px);min-height:340px;position:relative;overflow:hidden}
+.rg{position:absolute;left:50%;top:48%;border:1.5px dashed #2f8cff66;border-radius:50%;transform:translate(-50%,-50%);animation:sp 24s linear infinite}
+@keyframes sp{to{transform:translate(-50%,-50%) rotate(360deg)}}
+canvas#av{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;-webkit-mask-image:radial-gradient(ellipse 64% 72% at 50% 46%,#000 52%,#0000 100%);mask-image:radial-gradient(ellipse 64% 72% at 50% 46%,#000 52%,#0000 100%)}
+#s{position:absolute;left:2px;top:6px;max-width:68%;max-height:44%;overflow:auto;white-space:pre-line;font-size:14px;line-height:1.35;padding:10px 12px;border:1.5px solid var(--c);border-radius:14px 14px 14px 2px;background:#04184acc;box-shadow:0 0 16px var(--g)}
+#wv{position:absolute;right:6px;bottom:8px;display:flex;gap:3px;align-items:center;height:40px}#wv i{width:3px;height:4px;background:var(--c);border-radius:2px;box-shadow:0 0 6px var(--c)}
+#chips{display:flex;gap:6px;overflow-x:auto;padding:2px 0 6px;scrollbar-width:none}
+#chips span{white-space:nowrap;font-size:12px;padding:6px 10px;border:1px solid var(--c);border-radius:12px;background:#06205066}
+.card{border:1px solid #1f6fd0;border-radius:14px;background:#05153f99;box-shadow:0 0 12px #1f6fd044 inset;padding:10px;margin:10px 0}
+.card h4{margin:0 0 8px;font-size:11px;letter-spacing:.16em;color:#7fd3ff}
+.gr{display:grid;grid-template-columns:1fr 1fr;gap:6px}.it{border:1px solid #1d4f9a;border-radius:10px;padding:7px 9px;font-size:12px;background:#06205066}.it b{display:block;font-size:12px}.it small{opacity:.75;font-size:10px}.on small{color:#6dffb0;opacity:1}
+#tl div{display:flex;gap:8px;font-size:12px;padding:5px 0;border-bottom:1px solid #12306a}#tl em{color:#7fd3ff;font-style:normal;min-width:42px}
+.qc{display:grid;grid-template-columns:1fr 1fr;gap:6px}.qc button,.qc a,.qc label{border:1px solid var(--c);border-radius:10px;background:#06205080;color:#dff3ff;padding:10px;font:inherit;font-size:13px;text-align:center;text-decoration:none}
+#gg{display:flex;justify-content:space-around}.gz{text-align:center}.gz svg{width:72px;height:72px}.gz text{fill:#dff3ff;font-size:13px;text-anchor:middle}.gz small{font-size:10px;opacity:.8}
+#ml{margin:6px 0 0;padding-left:18px;font-size:12px}
+footer{padding:6px 8px calc(env(safe-area-inset-bottom,0px) + 6px);border-top:1px solid #1d4f9a;background:#030820ee}
+#pill{display:flex;align-items:center;gap:8px;padding:4px 10px 4px 4px;border:1px solid var(--c);border-radius:24px;background:#04184acc;margin-bottom:6px;font-size:13px}
+#mini{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--c);flex:none}#sub{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#bot{display:flex;gap:8px;align-items:center}#bot button{color:#dff3ff;font-family:inherit;border:1.5px solid var(--c);background:#06205080;box-shadow:0 0 12px var(--g);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:20px;line-height:1.1}
+#bot small{font-size:9px;letter-spacing:.08em}#m{width:60px;height:60px;border-radius:50%;flex:none}.sq{width:52px;height:52px;border-radius:14px;flex:none}
+#q{flex:1;min-width:0;display:flex;border:1.5px solid var(--c);border-radius:26px;background:#04123a}#q input{flex:1;min-width:0;background:none;border:0;color:#e8f6ff;font-size:16px;padding:12px 14px;outline:0}#q button{width:44px;border:0;box-shadow:none;background:none;border-radius:0}
+</style></head><body><div id="app">
+<header><div class="l"><div class="lg">🎤</div><div><b id="tt">Z.A.R.A</b><small>COMMAND CENTER</small></div></div>
+<div class="r"><span id="ss">OPTIMAL</span><div><b id="tm">--:--</b><small id="dt"></small><small><i class="dot"></i><span id="ol">Online</span></small></div><button id="gs" class="ib">⚙</button></div></header>
+<div id="scroll">
+<div id="stage"><i class="rg" style="width:300px;height:300px"></i><i class="rg" style="width:380px;height:380px;animation-direction:reverse"></i><canvas id="av" width="880" height="930"></canvas><div id="s">Namaste Sir… 💙</div><div id="wv"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+<div id="chips"><span id="cpu">CPU</span><span id="ram">RAM</span><span id="bat">🔋</span><span id="wf">📶</span><span>🧠 <b id="mc">0</b> Items</span></div>
+<div class="card"><h4>AI CORE OVERVIEW</h4><div class="gr" id="ov"></div></div>
+<div class="card"><h4>ACTIVE AGENTS</h4><div class="gr" id="ag"></div></div>
+<div class="card"><h4>RECENT ACTIVITY</h4><div id="tl"><div><em>--</em>Abhi koi baat nahi hui</div></div></div>
+<div class="card"><h4>QUICK COMMANDS</h4><div class="qc"><button id="qn">➕ Nayi baat</button><button id="qv">🎙 Voice chat</button><a href="https://www.youtube.com" target="_blank" rel="noopener">▶️ YouTube</a><a href="https://www.google.com" target="_blank" rel="noopener">🔎 Google</a><a href="https://music.youtube.com" target="_blank" rel="noopener">🎵 Music</a><label>📷 Camera<input type="file" accept="image/*" capture="environment" hidden></label></div></div>
+<div class="card"><h4>SYSTEM MONITOR</h4><div id="gg"></div></div>
+<div class="card"><h4>MEMORY INSIGHTS</h4><div class="gr"><div class="it"><b id="mm">0</b><small>Notes saved</small></div><div class="it"><b id="turns">0</b><small>Session turns</small></div></div><ul id="ml"></ul></div>
+<div class="card"><h4>LLM STATUS</h4><div class="gr" id="ll"></div></div>
+<div id="qt" style="text-align:center;font-size:11px;opacity:.7">👑 “Dream Big… Work Hard… Be Successful…”</div>
+</div>
+<footer><div id="pill"><canvas id="mini" width="68" height="68"></canvas><span id="sub">Sir, aap kya karna chahte hain? ❤</span></div>
+<div id="bot"><button id="m">🎤<small>BOLO</small></button><div id="q"><input id="i" placeholder="ZARA se kuch poochho…" enterkeyhint="send"><button id="g">➤</button></div><button id="t" class="sq">🚀<small>BOOT</small></button><button id="y" class="sq">🧠<small>YAAD</small></button></div></footer>
+</div><script>
+
+const $=i=>document.getElementById(i),st=$('s');
+let mode='idle';
+const img=new Image(),cv=$('av'),x=cv.getContext('2d'),W=880,H=930,MT=290,MB=376,LX=532,LY=314,ST=10,EY=[[498,214,30,13,498,238],[600,230,26,12,600,252]],LB={idle:'Online',listen:'Listening…',speak:'Speaking…'};
+let o=0,vw=1,vh=.5,nv=0,bl=0,bs=-9,nb=2,gx=0,tx=0,ng=1,skin=['#f0d8e0','#f0d8e0'];
+img.src="girl.jpg";
+img.onload=()=>{x.drawImage(img,0,0);skin=EY.map(e=>{const d=x.getImageData(e[4]-3,e[5]-3,7,7).data;let r=0,g=0,b=0;for(let i=0;i<196;i+=4){r+=d[i];g+=d[i+1];b+=d[i+2]}return`rgb(${r/49|0},${g/49|0},${b/49|0})`});$('mini').getContext('2d').drawImage(img,430,60,260,260,0,0,68,68);requestAnimationFrame(f)};
+const WB=[...$('wv').children];
+function f(n){const s=n/1000,sp=mode=='speak',li=mode=='listen';
+ if(s>nb&&bs<0)bs=s;
+ if(bs>=0){const p=(s-bs)/.2;bl=p<.5?p*2:Math.max(0,2-p*2);if(p>1){bs=-9;bl=0;nb=s+2+Math.random()*3.5}}
+ if(s>ng){tx=(Math.random()-.5)*2;ng=s+1.2+Math.random()*2.5}gx+=(tx-gx)*.1;
+ if(s>nv){vw=.7+Math.random()*.5;vh=Math.random()<.2?.1:.4+Math.random()*.8;nv=s+.09+Math.random()*.08}
+ o+=((sp?vh*(.45+.55*Math.abs(Math.sin(s*9))):0)-o)*.45;
+ const e=o*16,rot=Math.sin(s*.9)*1.3+(sp?Math.sin(s*2.3)*1.8+Math.sin(s*5.1)*.5:0)+(li?2.5:0)+gx*.6,br=1+Math.sin(s*1.6)*.004,bx=Math.sin(s*.9+.5)*5+(sp?Math.sin(s*2.3)*3:0);
+ x.clearRect(0,0,W,H);x.save();
+ x.translate(W/2,H);x.rotate(rot*Math.PI/180);x.scale(1.05*br,1.05*br);x.translate(-W/2+bx,-H+(sp?-Math.abs(Math.sin(s*4.5))*3+o*2:0)+Math.sin(s*1.6)*3);
+ for(let y=0;y<H;y+=ST){const h=Math.min(ST,H-y);let dy=0,sh=1;if(y>=MB)dy=e;else if(y>MT){dy=(y-MT)/(MB-MT)*e;sh=1+e/(MB-MT)}
+  const k=Math.pow(y/H,2),dx=Math.sin(s*.9+y*.004)*8*k+Math.sin(s*2.1+y*.006)*2*k*(sp?1:.4);
+  x.drawImage(img,0,y,W,h,dx,y+dy,W,h*sh+.6)}
+ if(o>.08){const cy=LY+(LY-MT)/(MB-MT)*e,rx=22*vw,ry=o*13;x.save();x.beginPath();x.ellipse(LX,cy,rx,ry,0,0,7);x.clip();x.fillStyle='#5a1a2a';x.fillRect(LX-rx,cy-ry,rx*2,ry*2);x.fillStyle='#f6f0ee';x.fillRect(LX-rx,cy-ry,rx*2,Math.min(ry*.5,5));x.fillStyle='#d8707f';x.fillRect(LX-rx*.6,cy+ry*.3,rx*1.2,ry);x.restore()}
+ EY.forEach((a,i)=>{const ry=a[3]*bl;if(ry<1)return;x.fillStyle=skin[i];x.beginPath();x.ellipse(a[0],a[1]-a[3]+ry,a[2],ry,0,0,7);x.fill();if(bl>.55){x.strokeStyle='#3a2a50';x.lineWidth=2.5;x.beginPath();x.ellipse(a[0],a[1],a[2]-4,3,0,.1,Math.PI-.1);x.stroke()}});
+ x.restore();
+ cv.style.filter=`drop-shadow(0 0 ${sp?34:18}px rgba(80,170,255,${sp?.7:.35}))`;
+ WB.forEach((b,i)=>{b.style.height=(sp?6+Math.abs(Math.sin(s*9+i*1.3)*Math.sin(s*3+i))*32:4)+'px'});
+ $('ol').textContent=LB[mode];
+ requestAnimationFrame(f)}
+function clk(){const d=new Date();$('tm').textContent=d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});$('dt').textContent=d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'})}
+setInterval(clk,1000);clk();
+$('cpu').textContent='CPU '+(navigator.hardwareConcurrency||'?')+' cores';$('ram').textContent='RAM ~'+(navigator.deviceMemory||'?')+' GB';
+function net(){$('wf').textContent=navigator.onLine?'📶 Connected':'📵 Offline'}addEventListener('online',net);addEventListener('offline',net);net();
+navigator.getBattery&&navigator.getBattery().then(b=>{const u=()=>$('bat').textContent='🔋 '+Math.round((window.BL=b.level)*100)+'%'+(b.charging?' ⚡':'');u();b.onlevelchange=b.onchargingchange=u}).catch(()=>{});
+setInterval(()=>{try{$('mc').textContent=MEM.length}catch(e){}},1500);
+
+const LOG=[];function logAct(t){LOG.unshift([new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}),t]);LOG.length=Math.min(LOG.length,4)}
+const esc=t=>String(t).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const tile=(n,v,on)=>`<div class="it ${on?'on':''}"><b>${n}</b><small>${v}</small></div>`;
+$('gg').innerHTML=[['Battery','b'],['Storage','d'],['Network','n']].map(([l,k])=>`<div class="gz"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="none" stroke="#12306a" stroke-width="6"/><circle id="gc${k}" cx="32" cy="32" r="26" fill="none" stroke="#38a8ff" stroke-width="6" stroke-linecap="round" transform="rotate(-90 32 32)" stroke-dasharray="0 200"/><text id="gt${k}" x="32" y="37">--</text></svg><small>${l}</small></div>`).join('');
+function gauge(k,p,t){const c=$('gc'+k);if(c)c.setAttribute('stroke-dasharray',(Math.max(0,Math.min(1,p))*163.4)+' 200');$('gt'+k).textContent=t}
+async function upd(){
+ const key=!!KEY(),on=navigator.onLine,md={idle:'Standby',listen:'Listening',speak:'Speaking'}[mode],thinking=/Soch/.test(st.textContent);
+ $('ss').textContent=on?'OPTIMAL':'OFFLINE';
+ $('ov').innerHTML=tile('AI Core','Active',1)+tile('Memory',MEM.length+' Stored',MEM.length>0)+tile('Voice',mode=='idle'?'Online':md,1)+tile('Network',on?'Connected':'Offline',on)+tile('LLMs',key?'1 Connected':'Key needed',key)+tile('System','Optimal',1);
+ $('ag').innerHTML=tile('🎙 Voice Agent',md,mode!='idle')+tile('🧠 Brain Agent',thinking?'Thinking':key?'Ready':'No key',thinking||key)+tile('💾 Memory Agent',MEM.length+' notes',MEM.length>0)+tile('🌐 Network Agent',on?'Online':'Offline',on)+tile('🛠 Tools Agent','Ready',1)+tile('⚙ System Agent','Optimal',1);
+ $('tl').innerHTML=LOG.length?LOG.map(l=>`<div><em>${l[0]}</em><span>${esc(l[1])}</span></div>`).join(''):'<div><em>--</em>Abhi koi baat nahi hui</div>';
+ $('mm').textContent=MEM.length;$('turns').textContent=Math.floor(HS.length/2);$('ml').innerHTML=MEM.slice(-3).map(m=>'<li>'+esc(m)+'</li>').join('');
+ $('ll').innerHTML=tile('Gemini',key?'Connected':'Add key in ⚙',key)+tile('Claude','Not linked',0)+tile('OpenAI','Not linked',0)+tile('Groq','Not linked',0);
+ const bl=window.BL;gauge('b',bl==null?0:bl,bl==null?'n/a':Math.round(bl*100)+'%');
+ try{const e=await navigator.storage.estimate();gauge('d',e.usage/e.quota,Math.round(e.usage/e.quota*100)+'%')}catch(x){gauge('d',0,'n/a')}
+ const dl=navigator.connection&&navigator.connection.downlink;gauge('n',dl?dl/20:0,dl?dl+'M':'n/a');
+}
+setInterval(upd,1500);setTimeout(upd,50);
+$('qn').onclick=()=>{HS=[];st.textContent='Nayi baat shuru. Boliye sir.'};$('qv').onclick=()=>$('m').click();
+function say(hi,ro){if(!window.speechSynthesis){st.textContent='Is browser mein awaaz nahi hai. Link ko Chrome mein kholo';return}speechSynthesis.cancel();const all=speechSynthesis.getVoices(),hv=all.find(v=>v.lang.startsWith('hi')),ev=all.find(v=>v.lang=='en-IN')||all.find(v=>v.lang.startsWith('en')),v=hv||ev,u=new SpeechSynthesisUtterance(hv?hi:ro);if(v){u.voice=v;u.lang=v.lang}else u.lang='en-IN';u.pitch=1.15;u.rate=.95;u.onstart=()=>mode='speak';u.onend=()=>{mode='idle'};u.onerror=e=>{mode='idle';$('sub').textContent='Awaaz error: '+e.error};speechSynthesis.speak(u);setTimeout(()=>{if(!speechSynthesis.speaking&&mode!='speak')$('sub').textContent='Awaaz shuru nahi hui. Chrome mein kholo, volume check karo'},2500)}
+$('t').onclick=()=>{st.textContent='Initializing…';say('नमस्ते सर। मैं ज़ारा हूँ। सारे सिस्टम ठीक चल रहे हैं। बताइए, क्या करना है?','Namaste sir. Main ZARA hoon. Saare system theek chal rahe hain. Bataiye, kya karna hai?')};
+let MEM=JSON.parse(localStorage.getItem('jmem')||'[]'),mdoc=true;
+async function saveMem(){try{localStorage.setItem('jmem',JSON.stringify(MEM))}catch(e){}}
+async function learn(q){if(!mdoc||!sm||q.length<12)return;try{const a=await sm.json('Existing memory:\n'+MEM.slice(-120).join('\n')+'\n\nThe user just said: '+q+'\n\nList NEW lasting personal facts about the user worth remembering forever (name, family, likes, plans, dates, promises, habits). Reply ONLY with a JSON array of short strings in the same language the user used. Use [] if nothing new.',{cache:false});if(Array.isArray(a)&&a.length){MEM=[...new Set([...MEM,...a.map(String)])].slice(-300);saveMem()}}catch(e){}}
+let HS=[];
+const KEY=()=>localStorage.getItem('gk')||'';
+function openSettings(){const k=prompt('Google Gemini API key yahan paste karo:',KEY());if(k!==null){localStorage.setItem('gk',k.trim());st.textContent='Key save ho gayi. Ab baat karo.'}}
+async function gem(p){const k=KEY();let err='';for(const m of [localStorage.getItem('gm')||'gemini-3.1-flash-lite','gemini-2.5-flash-lite','gemini-flash-latest']){try{const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+m+':generateContent?key='+k,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{role:'user',parts:[{text:p}]}],generationConfig:{maxOutputTokens:400,temperature:.8}})});const j=await r.json();if(j.candidates&&j.candidates[0]&&j.candidates[0].content)return j.candidates[0].content.parts.map(x=>x.text||'').join('');err=(j.error&&j.error.message)||'no reply';if(r.status==403||(r.status==400&&/API key/i.test(err)))break}catch(e){err=e.message}}throw new Error(err)}
+const sm=Object.assign(async p=>({text:await gem(p)}),{json:async p=>{const t=await gem(p+'\n\nReply with raw JSON only.'),m=t.match(/\[[\s\S]*\]/);return m?JSON.parse(m[0]):[]}});
+async function ask(q){$('sub').textContent='🎤 '+q;logAct(q);if(/sab bhool|bhool jao|forget everything/i.test(q)){MEM=[];saveMem();st.textContent='Theek hai sir, maine sab bhula diya.';say('ठीक है सर, मैंने सब भुला दिया।','Theek hai sir, maine sab bhula diya.');return}st.textContent='Aapne kaha: '+q+'\nSoch raha hoon…';mode='idle';
+ try{if(!KEY()){openSettings();if(!KEY())return}
+  HS.push('User: '+q);HS=HS.slice(-10);
+  const hasHi=speechSynthesis.getVoices().some(v=>v.lang.startsWith('hi'));
+  const sys='You are ZARA, a witty, polite, warm and caring female personal AI assistant of the user, whom you call Sir. Talk like a real human friend. You are a woman, so always speak in the feminine form (for example: main kar sakti hoon, main sun rahi hoon). Reply in '+(hasHi?'Hindi written in Devanagari script':'Hinglish written in Roman script')+', mixing simple English words naturally. Keep it to 1 or 2 short spoken sentences. No markdown, no emojis, no lists.';
+  const r=await sm(sys+'\n\nLong-term memory about the user (facts you remember; use naturally when relevant):\n'+MEM.slice(-120).join('\n')+'\n\nConversation so far (latest last):\n'+HS.join('\n')+'\n\nWrite only ZARA reply to the last User message.',{cache:false});
+  const a=r.text.trim();HS.push('ZARA: '+a);st.textContent=a;say(a,a);learn(q);
+ }catch(e){st.textContent='AI error: '+((e&&(e.message||e.code))||e)}}
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+$('g').onclick=()=>{const v=$('i').value.trim();if(v){$('i').value='';ask(v)}};$('i').onkeydown=e=>{if(e.key=='Enter')$('g').click()};
+$('y').onclick=()=>{if(!mdoc){st.textContent='Yaaddasht is page par available nahi hai';return}st.textContent=MEM.length?'Mujhe yaad hai ('+MEM.length+'):\n'+MEM.slice(-6).map(m=>'• '+m).join('\n'):'Abhi mujhe kuch yaad nahi. Mujhse apne baare mein baat karo.'};
+$('m').onclick=()=>{if(!SR){st.textContent='Mic ke liye ye link Chrome mein kholiye';return}
+ const r=new SR();r.lang='hi-IN';r.onresult=e=>{const q=e.results[0][0].transcript;ask(q);0&&say('आपने कहा, '+q+'। अभी मेरा दिमाग जोड़ना बाकी है।','Aapne kaha, '+q+'. Abhi mera dimaag jodna baaki hai.')};
+ r.onend=()=>{if(mode=='listen')mode='idle'};r.onerror=e=>{mode='idle';st.textContent='Mic error: '+e.error};r.start();mode='listen';st.textContent='Listening…'};
+$('gs').onclick=openSettings;if(!KEY())st.textContent='Pehle ⚙ dabao aur Gemini key daalo';
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js');
+</script></body></html>
