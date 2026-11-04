@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<theme>
+<version><![CDATA[1.0]]></version>
+<uiVersion>15</uiVersion>
+<author><![CDATA[KIEN BUI]]></author>
+<designer><![CDATA[KIEN BUI]]></designer>
+<title><![CDATA[Super26 Pro]]></title>
+<description><![CDATA[Channel : https://t.me/miuithemevn/34 
+Phản hồi : https://t.me/kbMiuiVietNam/392
+Facebook : https://www.facebook.com/groups/miuithemevietnam/
+GROUP XIAOMI THEME VIỆT NAM]]></description>
+<authors>
+<author locale="en_US"><![CDATA[KIEN BUI]]></author>
+<author locale="zh_CN"><![CDATA[KIEN BUI]]></author>
+</authors>
+<designers>
+<designer locale="en_US"><![CDATA[KIEN BUI]]></designer>
+<designer locale="zh_CN"><![CDATA[KIEN BUI]]></designer>
+<designer locale="vi_VN"><![CDATA[KIEN BUI]]></designer>
+</designers>
+<titles>
+<title locale="en_US"><![CDATA[Super26 Pro]]></title>
+<title locale="zh_CN"><![CDATA[Super26 Pro]]></title>
+</titles>
+<descriptions>
+<description locale="en_US"><![CDATA[Channel : https://t.me/miuithemevn/34 
+Phản hồi : https://t.me/kbMiuiVietNam/392
+Facebook : https://www.facebook.com/groups/miuithemevietnam/
+GROUP XIAOMI THEME VIỆT NAM]]></description>
+<description locale="zh_CN"><![CDATA[Channel : https://t.me/miuithemevn/34 
+Phản hồi : https://t.me/kbMiuiVietNam/392
+Facebook : https://www.facebook.com/groups/miuithemevietnam/
+GROUP XIAOMI THEME VIỆT NAM]]></description>
+<description locale="vi_VN"><![CDATA[Channel : https://t.me/miuithemevn/34 
+Phản hồi : https://t.me/kbMiuiVietNam/392
+Facebook : https://www.facebook.com/groups/miuithemevietnam/
+GROUP XIAOMI THEME VIỆT NAM]]></description>
+</descriptions>
+<miuiAdapterVersion>3.1</miuiAdapterVersion>
+</theme>
